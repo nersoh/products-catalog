@@ -1,0 +1,16 @@
+<%= provide(:title, 'Contact') %>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Getting in touch</h1>
+		<%= form_for(:contact, url: contact_path, html: {class: 'inner-form'}) do |f| %>
+				<%= f.label :name %>
+				<%= f.text_field :name, class: "form-control" %>
+				<%= f.label :email %>
+				<%= f.email_field :email, class: "form-control" %>
+				<%= f.label :message %>
+				<%= f.text_area :message, class: "form-control" %>
+				<%= f.submit "Send", class: "btn btn-primary" %>
+		<% end %>
+		  
+	</div>
+</div>

@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass'
+
+group :test do
+	gem 'minitest-reporters'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'

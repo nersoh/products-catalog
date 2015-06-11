@@ -1,0 +1,9 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.inner-form {
+	input, textarea, button {
+		margin-bottom: 20px;
+	}
+}
