@@ -1,0 +1,9 @@
+<h1>Search for <%= params[:query] %></h1>
+<ul>
+<% @products.each do |p| %>
+	<li>
+		<p><%= p.name %></p>
+		<p><%= p.description %></p>
+	</li>
+<% end %>
+</ul>

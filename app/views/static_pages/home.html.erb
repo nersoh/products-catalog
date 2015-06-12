@@ -1,6 +1,52 @@
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1 main">
 		<h1>Home</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus quia libero earum incidunt accusantium, voluptate aut? In obcaecati perferendis minima, eligendi vero consectetur. Laboriosam molestiae sequi officiis est eius architecto autem, odio quidem odit, cum minima nostrum. Nam doloribus sunt quasi. Ipsa sit ea neque quis odit, placeat reiciendis porro, dolores maiores optio, ad nobis voluptates officiis inventore! Ex voluptates veritatis aspernatur reprehenderit. Corporis unde impedit delectus ipsa maiores, eveniet vel deserunt eum quo, quasi rerum quam necessitatibus esse iusto at aspernatur odio atque! Doloremque consequuntur voluptate at, assumenda modi corporis perferendis quod nihil autem velit suscipit neque minima rerum enim impedit. Ullam minus ipsa nesciunt dolorem nulla alias, eveniet suscipit ipsam eum necessitatibus hic, excepturi iste perspiciatis in sapiente eos molestias fuga quaerat, fugiat animi nemo asperiores ducimus labore. Amet dolorum aliquam natus, minus hic, deleniti doloribus quidem nihil incidunt iste, excepturi perspiciatis? Fuga, assumenda, atque? Maxime sunt ea nisi saepe fuga mollitia atque cumque maiores animi dicta, expedita iste. Consectetur necessitatibus, ut accusamus reprehenderit repellat odit cumque nobis deleniti at dolor nulla adipisci, ullam consequuntur. Assumenda quam vel dolore adipisci laudantium. Quidem velit quos amet pariatur ipsam temporibus error, voluptas ea. Aspernatur corporis dignissimos, sapiente ab architecto sed.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae, facilis assumenda expedita atque sapiente distinctio. Similique officia laborum earum.</p>
+		<div class="row">
+			<h2>Featured</h2>
+			<% @products_home[:featured].each do |p| %>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="https://www.helpmicros.com.br/images/no_product_image.gif" alt="Product">
+		      <div class="caption">
+		        <h3><%= p.name %></h3>
+		        <p><%= p.description %></p>
+		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+		      </div>
+		     </div>
+			</div>
+		<% end %>
+		</div>
+		
+		<div class="row">
+			<h3>Take a look at our newer ones</h3>
+			<% @products_home[:newer].each do |p| %>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="https://www.helpmicros.com.br/images/no_product_image.gif" alt="Product">
+		      <div class="caption">
+		        <h3><%= p.name %></h3>
+		        <p><%= p.description %></p>
+		        <p><%= link_to "See more", product_path(p), class: 'btn btn-default'  %></p>
+		      </div>
+		     </div>
+			</div>
+			<% end %>
+		</div>
+		<div class="row">
+			<h3>Other products</h3>
+			<% @products_home[:normal].each do |p| %>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="https://www.helpmicros.com.br/images/no_product_image.gif" alt="Product">
+		      <div class="caption">
+		        <h3><%= p.name %></h3>
+		        <p><%= p.description %></p>
+		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+		      </div>
+		     </div>
+			</div>
+			<% end %>
+		</div>
 	</div>
 </div>
