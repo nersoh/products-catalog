@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
+gem 'paperclip'
 
 group :test do
 	gem 'minitest-reporters'

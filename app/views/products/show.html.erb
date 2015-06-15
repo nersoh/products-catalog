@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<% @product.pictures.each do |pic| %>
+		<%= image_tag pic.image.url(:medium) %>
+	<% end %>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @product.name %>
+	</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @product.description %>
+	</p>
+	<%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-default' %> |
+	<%= link_to 'Back', products_path, class: 'btn btn-default' %>
+	</div>
+</div>

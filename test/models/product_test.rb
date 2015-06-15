@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  
   def setup
   	@product = Product.new name: "name", description: "desc", status: :normal
   end
@@ -30,5 +29,10 @@ class ProductTest < ActiveSupport::TestCase
   	@product.save
   	assert @product.valid?
   	assert @product.normal?
+  end
+
+  test "image should be present and be a sample" do
+    @product.pictures.build
+    assert_not @product.pictures.blank?
   end
 end
