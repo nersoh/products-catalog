@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  resources :users
+
+  get 'sessions/new'
+
   resources :products
 
   root "static_pages#home"
 
+  get 'login' => "sessions#new"
+  post 'login' => "sessions#create"
+  get 'logout' => "sessions#destroy"
   get 'home' => "static_pages#home"
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"

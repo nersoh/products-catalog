@@ -17,3 +17,6 @@ Product.create([
 	{name: "Product 08", description: "Description of Product 08"},
 	{name: "Product 09", description: "Description of Product 09"},
 ])
+
+User.create(name: "Administrator", email:"admin@admin.com",
+						password: "password", password_confirmation: "password")
