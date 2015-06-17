@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :require_permission, only: [:edit]
 
   # GET /users
   # GET /users.json
@@ -72,5 +74,20 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "You must be logged in."
+        redirect_to login_url
+      end
+    end
+
+    def require_permission
+      @user = User.find(params[:id])
+      unless current_user?(@user)
+        flash[:danger] = "You don't have permission to edit other users information."
+        redirect_to(request.referrer || root_url)
+      end
     end
 end

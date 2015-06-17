@@ -19,4 +19,5 @@ Product.create([
 ])
 
 User.create(name: "Administrator", email:"admin@admin.com",
-						password: "password", password_confirmation: "password")
+						password: "password", password_confirmation: "password",
+						role: User.roles[:admin])

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	enum role: %w(user admin)
 	has_secure_password
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
