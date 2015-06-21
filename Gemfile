@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
 gem 'paperclip'
+gem 'pundit'
 
 group :test do
 	gem 'minitest-reporters'

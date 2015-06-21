@@ -4,7 +4,11 @@ class ProductsTest < ActionDispatch::IntegrationTest
 
 	def setup
 		@default_product_image = "/no_product_image.gif"
+    @user = User.create(name: "admin", email: "admin@test.com",
+                        password: 'password', password_confirmation: 'password', role: "admin")
+    log_in_as @user
 	end
+
   test "unsuccessful create" do
     assert_no_difference "Product.count" do
     	post_via_redirect products_path, product: {name: "p1"}

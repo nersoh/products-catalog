@@ -77,6 +77,8 @@ GEM
       mime-types
     pg (0.18.2)
     polyglot (0.3.5)
+    pundit (1.0.1)
+      activesupport (>= 3.0.0)
     rack (1.5.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -144,6 +146,7 @@ DEPENDENCIES
   minitest-reporters
   paperclip
   pg
+  pundit
   rails (= 4.1.5)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

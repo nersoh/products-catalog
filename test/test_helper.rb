@@ -13,4 +13,15 @@ class ActiveSupport::TestCase
   def sample_file(filename = "sample_file.png")
 		File.new("test/fixtures/#{filename}")
 	end
+
+
+  def log_in_as(user, options = {})
+  	password = options[:password] || 'password'
+  	post login_path, session: {email: user.email, password: password}
+  end
+
+
+  def login_for_test(user)
+    cookies.signed[:auth_token] = user.auth_token
+  end
 end

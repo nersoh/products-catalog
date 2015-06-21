@@ -3,6 +3,9 @@ require 'test_helper'
 class ProductsControllerTest < ActionController::TestCase
   setup do
     @product = products(:one)
+    @user = User.create(name: "admin", email: "admin@test.com",
+                        password: 'password', password_confirmation: 'password', role: "admin")
+    login_for_test @user
   end
 
   test "should get index" do

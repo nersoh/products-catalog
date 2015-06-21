@@ -26,6 +26,10 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.select :role, User.roles.collect {|r, v| [r.humanize, r]}, {}, {class: 'form-control'} %>
+  </div>
   <div class="actions">
     <%= f.submit submit_text, class: 'btn btn-primary' %>
   </div>
