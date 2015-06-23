@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th>Status</th>
       <th></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
+        <td><%= product.status.humanize %></td>
         <td>
           <%= link_to 'Show', admin_product_path(product) %>
           <%= link_to 'Edit', edit_admin_product_path(product) %>

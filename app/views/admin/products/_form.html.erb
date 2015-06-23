@@ -19,6 +19,10 @@
     <%= f.label :description %><br>
     <%= f.text_area :description, class: 'form-control' %>
   </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, Product.statuses.collect {|k, v| [k.humanize, k]}, {},class: 'form-control' %>
+  </div>
   <%= f.fields_for :pictures do |builder| %>
     <%= builder.label :image, "Picture" %>
     <%= builder.file_field :image, class:'btn btn-info btn-file' %>   

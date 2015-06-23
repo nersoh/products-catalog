@@ -12,6 +12,10 @@
 	  <strong>Description:</strong>
 	  <%= @product.description %>
 	</p>
+	<p>
+	  <strong>Status:</strong>
+	  <%= @product.status.humanize %>
+	</p>
 	<% if logged_in? %>
 		<% if policy(@product).edit? %>
 			<%= link_to 'Edit', edit_admin_product_path(@product), class: 'btn btn-default' %> |
