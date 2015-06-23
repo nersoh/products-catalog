@@ -1,6 +1,6 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, except: [:index, :show]
+  before_action :logged_in_user, except: [:show]
   after_action :verify_authorized
 
   # GET /products
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     authorize @product
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to [:admin, @product], notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
     authorize @product
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to [:admin, @product], notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
     authorize @product
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to admin_products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

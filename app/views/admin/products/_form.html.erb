@@ -1,0 +1,29 @@
+<%= form_for([:admin, @product], html: {class: 'inner-form', multipart: true}) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>This form contains <%= pluralize(@product.errors.count, "error") %> </h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <%= f.fields_for :pictures do |builder| %>
+    <%= builder.label :image, "Picture" %>
+    <%= builder.file_field :image, class:'btn btn-info btn-file' %>   
+  <% end %>
+  <div class="actions">
+    <%= f.submit submit_text, class: 'btn btn-primary' %>
+  </div>
+<% end %>

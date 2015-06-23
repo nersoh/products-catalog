@@ -1,7 +1,7 @@
 class ProductPolicy < ApplicationPolicy
   
 	def index?
-		user.admin?
+		true
 	end
 
 	def new?

@@ -10,17 +10,16 @@ class UsersCreateEditTest < ActionDispatch::IntegrationTest
 
   test "show user" do
     log_in_as @user
-  	get user_path(@user)
+  	get admin_user_path(@user)
   	assert_template 'users/show'
-  	#assert_select 'p', @user.name
   end
 
   test "unsuccessful edit" do
     log_in_as @user
-  	get edit_user_path(@user)
+  	get edit_admin_user_path(@user)
   	assert_template 'users/edit'
 
-  	patch user_path(@user), user: {name: "", email: "invalid",
+  	patch admin_user_path(@user), user: {name: "", email: "invalid",
   		password: "sample", password_confirmation: "sample2"}
   	assert flash.empty?
   	assert_template 'users/edit'
@@ -28,14 +27,14 @@ class UsersCreateEditTest < ActionDispatch::IntegrationTest
 
   test "successful edit" do
     log_in_as @user
-  	get edit_user_path(@user)
+  	get edit_admin_user_path(@user)
   	assert_template 'users/edit'
   	name = "name1"
   	email = "email@email.com"
-  	patch user_path(@user), user: {name: name, email: email,
+  	patch admin_user_path(@user), user: {name: name, email: email,
   		password: 'name123', password_confirmation: 'name123'}
   	assert_not flash.empty?
-  	assert_redirected_to @user
+  	assert_redirected_to admin_user_path(@user)
   	@user.reload
   	assert_equal @user.name, name
   	assert_equal @user.email, email
@@ -43,20 +42,18 @@ class UsersCreateEditTest < ActionDispatch::IntegrationTest
 
   test "user should not edit other users" do
     log_in_as @user
-    assert_redirected_to @user 
-    get edit_user_path(@admin)
+    get edit_admin_user_path(@admin)
     assert_redirected_to root_url
     assert_not flash.empty?
-    patch user_path(@admin), user: {name: "user"}
+    patch admin_user_path(@admin), user: {name: "user"}
     @admin.reload
     assert_not_equal @admin.name, "user"
   end
 
   test "unauthorized user cannot create user" do
     log_in_as @user
-    assert_redirected_to @user
     assert_no_difference "User.count" do
-      post_via_redirect users_path, user: {name: "user", email: "user@email.com",
+      post_via_redirect admin_users_path, user: {name: "user", email: "user@email.com",
       password: 'name123', password_confirmation: 'name123'}
     end
     assert_not flash.empty?
@@ -64,9 +61,8 @@ class UsersCreateEditTest < ActionDispatch::IntegrationTest
 
    test "authorized user can create user" do
     log_in_as @admin
-    assert_redirected_to @admin
     assert_difference "User.count", 1 do
-      post_via_redirect users_path, user: {name: "user", email: "user@email.com",
+      post_via_redirect admin_users_path, user: {name: "user", email: "user@email.com",
       password: 'name123', password_confirmation: 'name123'}
     end
     assert_not flash.empty?
@@ -74,14 +70,14 @@ class UsersCreateEditTest < ActionDispatch::IntegrationTest
 
   test "admin users should edit other users" do
     log_in_as @admin
-    get users_path
+    get admin_users_path
     assert_template 'users/index'
-    get edit_user_path(@user)
+    get edit_admin_user_path(@user)
     assert_template 'users/edit'
     name = "newName"
-    patch user_path(@user), user: {name: name}
+    patch admin_user_path(@user), user: {name: name}
 
-    assert_redirected_to @user
+    assert_redirected_to admin_user_path(@user)
     follow_redirect!
     assert_template 'users/show'
     assert_not flash.empty?

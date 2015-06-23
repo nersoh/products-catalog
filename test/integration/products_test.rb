@@ -11,16 +11,16 @@ class ProductsTest < ActionDispatch::IntegrationTest
 
   test "unsuccessful create" do
     assert_no_difference "Product.count" do
-    	post_via_redirect products_path, product: {name: "p1"}
+    	post_via_redirect admin_products_path, product: {name: "p1"}
     end
-    assert_template 'products/new'
+    assert_template 'admin/products/new'
   end
 
   test "successful create" do
     assert_difference "Product.count", 1 do
-    	post_via_redirect products_path, product: {name: "p1", description: "desc"}
+    	post_via_redirect admin_products_path, product: {name: "p1", description: "desc"}
     end
-    assert_template 'products/show'
+    assert_template 'admin/products/show'
     assert_select "img[src=?]", @default_product_image
   end
 end

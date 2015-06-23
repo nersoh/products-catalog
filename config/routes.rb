@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  resources :users
+  namespace :admin do
+  get 'dashboard/index'
+  end
+
+  #resources :users
 
   get 'sessions/new'
 
-  resources :products
+  resources :products, only: [:index, :show]
 
   root "static_pages#home"
 
@@ -15,6 +19,13 @@ Rails.application.routes.draw do
   get 'contact' => "static_pages#contact"
 
   get 'search' => "products#search"
+
+
+  namespace :admin do
+    get '' => "dashboard#index", as: '/'
+    resources :products
+    resources :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

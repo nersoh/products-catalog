@@ -1,0 +1,38 @@
+<%= form_for([:admin, @user], html: {class: 'inner-form'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>This form contains <%= pluralize(@user.errors.count, "error") %></h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= f.label :role %>
+      <%= f.select :role, User.roles.collect {|r, v| [r.humanize, r]}, {}, {class: 'form-control'} %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit submit_text, class: 'btn btn-primary' %>
+  </div>
+<% end %>
