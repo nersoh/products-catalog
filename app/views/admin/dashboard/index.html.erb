@@ -1,2 +1,55 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-5">
+			<h2>Lastest products</h2>
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>Status</th>
+			      <th></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <% @products.each do |product| %>
+			      <tr>
+			        <td><%= product.name %></td>
+			        <td><%= product.status.humanize %></td>
+			        <td>
+			          <%= link_to 'Show', admin_product_path(product) %>
+			          <%= link_to 'Edit', edit_admin_product_path(product) %>
+			          <%= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>
+			        </td>
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+		</div>
+
+				<div class="col-md-5">
+			<h2>Lastest products</h2>
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>Email</th>
+			      <th></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <% @users.each do |user| %>
+			      <tr>
+			        <td><%= user.name %></td>
+			        <td><%= user.email %></td>
+			        <td>
+			          <%= link_to 'Show', admin_user_path(user) %>
+			          <%= link_to 'Edit', edit_admin_user_path(user) %>
+			          <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+			        </td>
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>

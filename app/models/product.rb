@@ -21,8 +21,9 @@ class Product < ActiveRecord::Base
 	end
 
 	def self.search(search)
+		@search = search.downcase
 		if search
-			where('name LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%")
+			where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{@search}%", "%#{@search}%")
 		else
 			all
 		end

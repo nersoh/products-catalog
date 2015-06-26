@@ -20,6 +20,10 @@ class ProductPolicy < ApplicationPolicy
 		true
 	end
 
+	def search?
+		true
+	end
+
 	def update?
 		edit?
 	end

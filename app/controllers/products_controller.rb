@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, except: [:index, :show]
-  after_action :verify_authorized
+  before_action :logged_in_user, except: [:index, :show, :search]
+  after_action :verify_authorized, except: [:search]
 
   # GET /products
   # GET /products.json

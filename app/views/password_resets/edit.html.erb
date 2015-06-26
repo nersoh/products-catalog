@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>New Password</h2>
+    <%= form_for(@user, url: password_reset_path(params[:id]), html: {class: 'inner-form'}) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>This form contains <%= pluralize(@user.errors.count, "error") %></h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Save Changes", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
